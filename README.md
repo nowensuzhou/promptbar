@@ -1,20 +1,30 @@
 # 提示语快捷插入和管理【秘籍】
 
-一款原生 macOS 菜单栏应用，用全局快捷键快速搜索并插入常用短语。
+一款原生 macOS 应用，用来集中管理提示词，并通过快捷面板把常用内容一键插入到光标位置。
+
+## 为什么需要它
+
+在日常使用 AI、开发、客服和写作工具时，提示词往往散落在多个地方：
+
+- 一部分存在备忘录，一部分存在 Notion、飞书或聊天记录
+- 相同类型的提示词没有清晰分类，查找时需要反复搜索
+- 想使用时，要先切换窗口、复制内容，再回到原来的应用粘贴
+- 频繁切换会打断思路，也会丢失输入光标所在的上下文
+
+**提示语快捷插入和管理【秘籍】**解决的就是这个问题：先把提示词集中到一个分类清晰的库中，需要时按 `⌘⇧Space` 呼出面板，选择后直接插入到光标所在位置，不用再离开当前工作场景。
 
 ![提示语快捷插入和管理【秘籍】设置界面](docs/screenshots/settings.png)
 
-## 功能
+## 核心能力
 
-- 按 `⌘⇧Space` 呼出快捷短语面板
-- 鼠标单击或上下方向键选择，按回车插入
+- 使用 `⌘⇧Space` 全局呼出快捷短语面板
+- 支持鼠标单击、上下方向键选择，或按回车插入
 - 支持搜索当前分类中的短语
 - 分类和短语均支持新建、编辑、删除
-- 在设置窗口中双击短语会立即插入到最近使用的应用
-- 设置窗口中选中短语后，可点击“插入”发送到最近使用的应用
-- 快捷面板会自动插入到你按快捷键前正在使用的应用
-- 自动保存到 `~/Library/Application Support/QuickInsert/shortcuts.json`
+- 设置窗口中双击短语可立即插入
+- 也可以选中短语后点击“插入”
 - 插入后自动恢复原剪贴板内容
+- 本地保存到 `~/Library/Application Support/QuickInsert/shortcuts.json`
 
 ## 安装
 
@@ -38,9 +48,32 @@ xattr -dr com.apple.quarantine /Applications/QuickInsert.app
 
 如果之前已允许过权限，但更新或重新安装后仍无法插入，请在辅助功能列表中先移除旧记录，再重新添加一次。
 
-## 从源码构建
+## 从源码安装
 
-当前构建脚本使用 macOS Command Line Tools 自带的 Swift 编译器，目标为 Apple Silicon Mac、macOS 14.0 及以上：
+### 环境要求
+
+- macOS 14.0 或更高版本
+- Apple Silicon Mac
+- Xcode Command Line Tools
+
+如果尚未安装 Command Line Tools，可执行：
+
+```bash
+xcode-select --install
+```
+
+### 获取并构建
+
+```bash
+git clone https://github.com/nowensuzhou/prompt-quick-insert-manager.git
+cd prompt-quick-insert-manager
+./Scripts/build.sh
+open build/QuickInsert-1.0.0.dmg
+```
+
+双击 DMG 后，将应用拖入“应用程序”文件夹，再打开应用。
+
+构建脚本会使用 macOS Command Line Tools 自带的 Swift 编译器：
 
 ```bash
 ./Scripts/build.sh
