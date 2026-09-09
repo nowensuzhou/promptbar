@@ -1,0 +1,17 @@
+.DS_Store
+
+.build-tmp/
+.local-backups/
+
+build/
+build-root-owned-*/
+local-backups/
+*.app/
+*.app/
+*.dmg
+*.pkg
+*.zip
+
+.build/
+.swiftpm/
+xcuserdata/
