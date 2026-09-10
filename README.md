@@ -1,6 +1,6 @@
 # PromptBar
 
-PromptBar 是一款原生 macOS 效率工具，用来集中管理提示词，并通过快捷面板把常用内容一键插入到当前光标位置。它的前身是“提示语快捷插入和管理【秘籍】”。
+PromptBar 是一款原生 macOS 效率工具，用来集中管理提示词，并通过快捷面板把常用内容一键插入到当前光标位置。
 
 ## 为什么需要它
 
@@ -25,11 +25,11 @@ PromptBar 解决的就是这个问题：先把提示词集中到一个分类清�
 - 也可以选中短语后点击“插入”
 - 插入后自动恢复原剪贴板内容
 - 本地保存到 `~/Library/Application Support/PromptBar/shortcuts.json`
-- 会自动迁移旧版 `QuickInsert/shortcuts.json` 数据
+- 自动迁移旧版本地数据
 
 ## 安装
 
-构建后双击 `build/PromptBar-1.0.0.dmg`，将应用拖到“应用程序”文件夹，然后打开应用。如果之前安装过 `QuickInsert.app`，建议先将其移到废纸篓。
+构建后双击 `build/PromptBar-1.0.0.dmg`，将应用拖到“应用程序”文件夹，然后打开应用。
 
 应用会显示 Dock 图标，双击或再次启动时会自动打开设置窗口。菜单栏中也会创建“插”图标；如果菜单栏图标过多，macOS 可能暂时不显示它，此时仍可使用 Dock 图标或 `⌘⇧Space`。
 
