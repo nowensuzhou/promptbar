@@ -84,7 +84,7 @@ final class PasteService {
         let alert = NSAlert()
         alert.alertStyle = .informational
         alert.messageText = "需要辅助功能权限"
-        alert.informativeText = "提示语快捷插入和管理【秘籍】需要控制当前应用来完成粘贴。请在“系统设置 > 隐私与安全性 > 辅助功能”中允许“提示语快捷插入和管理【秘籍】”，然后重试。"
+        alert.informativeText = "PromptBar 需要控制当前应用来完成粘贴。请在“系统设置 > 隐私与安全性 > 辅助功能”中允许“PromptBar”，然后重试。"
         alert.addButton(withTitle: "打开系统设置")
         alert.addButton(withTitle: "稍后")
 

@@ -17,7 +17,7 @@ final class HotKeyManager {
 
         let installStatus = InstallEventHandler(
             GetApplicationEventTarget(),
-            quickInsertHotKeyHandler,
+            promptBarHotKeyHandler,
             1,
             &eventType,
             Unmanaged.passUnretained(self).toOpaque(),
@@ -25,7 +25,7 @@ final class HotKeyManager {
         )
 
         guard installStatus == noErr else {
-            NSLog("QuickInsert: unable to install hot key handler: \(installStatus)")
+            NSLog("PromptBar: unable to install hot key handler: \(installStatus)")
             return
         }
 
@@ -41,7 +41,7 @@ final class HotKeyManager {
         )
 
         if registerStatus != noErr {
-            NSLog("QuickInsert: unable to register global hot key: \(registerStatus)")
+            NSLog("PromptBar: unable to register global hot key: \(registerStatus)")
             if let handlerRef {
                 RemoveEventHandler(handlerRef)
                 self.handlerRef = nil
@@ -66,7 +66,7 @@ final class HotKeyManager {
     }
 }
 
-private func quickInsertHotKeyHandler(
+private func promptBarHotKeyHandler(
     _: EventHandlerCallRef?,
     _: EventRef?,
     userData: UnsafeMutableRawPointer?

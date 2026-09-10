@@ -14,13 +14,14 @@ final class ShortcutStore {
             in: .userDomainMask
         ).first ?? FileManager.default.homeDirectoryForCurrentUser
 
-        let directory = applicationSupport.appendingPathComponent("QuickInsert", isDirectory: true)
+        let directory = applicationSupport.appendingPathComponent("PromptBar", isDirectory: true)
         fileURL = directory.appendingPathComponent("shortcuts.json")
 
         encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         decoder = JSONDecoder()
 
+        migrateLegacyData(to: directory)
         load()
     }
 
@@ -117,7 +118,32 @@ final class ShortcutStore {
             let data = try encoder.encode(categories)
             try data.write(to: fileURL, options: .atomic)
         } catch {
-            NSLog("QuickInsert: unable to save shortcuts: \(error.localizedDescription)")
+            NSLog("PromptBar: unable to save shortcuts: \(error.localizedDescription)")
+        }
+    }
+
+    private func migrateLegacyData(to directory: URL) {
+        let legacyDirectory = directory
+            .deletingLastPathComponent()
+            .appendingPathComponent("QuickInsert", isDirectory: true)
+        let legacyFileURL = legacyDirectory.appendingPathComponent("shortcuts.json")
+        let destinationURL = directory.appendingPathComponent("shortcuts.json")
+
+        guard FileManager.default.fileExists(atPath: legacyFileURL.path),
+              !FileManager.default.fileExists(atPath: destinationURL.path)
+        else { return }
+
+        do {
+            try FileManager.default.createDirectory(
+                at: directory,
+                withIntermediateDirectories: true
+            )
+            try FileManager.default.moveItem(
+                at: legacyFileURL,
+                to: destinationURL
+            )
+        } catch {
+            NSLog("PromptBar: unable to migrate legacy shortcuts: \(error.localizedDescription)")
         }
     }
 

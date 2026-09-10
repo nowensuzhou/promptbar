@@ -9,7 +9,7 @@ final class SettingsWindowController: NSWindowController {
             backing: .buffered,
             defer: false
         )
-        window.title = "提示语快捷插入和管理【秘籍】设置"
+        window.title = "PromptBar 设置"
         window.minSize = NSSize(width: 680, height: 440)
         window.contentViewController = viewController
         window.isReleasedWhenClosed = false

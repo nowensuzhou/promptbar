@@ -39,5 +39,5 @@ struct ShortcutCategory: Codable, Equatable, Identifiable {
 }
 
 extension Notification.Name {
-    static let shortcutStoreDidChange = Notification.Name("QuickInsertShortcutStoreDidChange")
+    static let shortcutStoreDidChange = Notification.Name("PromptBarShortcutStoreDidChange")
 }

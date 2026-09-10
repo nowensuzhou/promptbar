@@ -3,10 +3,10 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="$ROOT/build"
-APP="$BUILD_DIR/QuickInsert.app"
+APP="$BUILD_DIR/PromptBar.app"
 SDK="$(xcrun --sdk macosx --show-sdk-path)"
 LOCAL_SWIFT_RESOURCE_DIR="$BUILD_DIR/toolchain/usr/lib/swift"
-SOURCES=("$ROOT"/Sources/QuickInsert/*.swift)
+SOURCES=("$ROOT"/Sources/PromptBar/*.swift)
 ICON_GENERATOR="$BUILD_DIR/make-app-icon"
 ICON_SOURCE="$BUILD_DIR/icon_1024.png"
 ICONSET_DIR="$BUILD_DIR/AppIcon.iconset"
@@ -34,7 +34,7 @@ swiftc \
     -framework AppKit \
     -framework ApplicationServices \
     -framework Carbon \
-    -o "$APP/Contents/MacOS/QuickInsert"
+    -o "$APP/Contents/MacOS/PromptBar"
 
 swiftc \
     "$ROOT/Tools/MakeAppIcon.swift" \
@@ -67,23 +67,23 @@ codesign --force --deep --sign - \
     "$APP"
 
 hdiutil create \
-    -volname "提示语快捷插入和管理【秘籍】" \
+    -volname "PromptBar" \
     -srcfolder "$APP" \
     -ov \
     -format UDZO \
-    "$BUILD_DIR/QuickInsert-1.0.0.dmg" >/dev/null
+    "$BUILD_DIR/PromptBar-1.0.0.dmg" >/dev/null
 
 pkgbuild \
     --component "$APP" \
     --install-location /Applications \
-    "$BUILD_DIR/QuickInsert-1.0.0.pkg" >/dev/null
+    "$BUILD_DIR/PromptBar-1.0.0.pkg" >/dev/null
 
 ditto -c -k --sequesterRsrc --keepParent \
     "$APP" \
-    "$BUILD_DIR/QuickInsert-1.0.0.zip"
+    "$BUILD_DIR/PromptBar-1.0.0.zip"
 
 echo "Built:"
 echo "  $APP"
-echo "  $BUILD_DIR/QuickInsert-1.0.0.dmg"
-echo "  $BUILD_DIR/QuickInsert-1.0.0.pkg"
-echo "  $BUILD_DIR/QuickInsert-1.0.0.zip"
+echo "  $BUILD_DIR/PromptBar-1.0.0.dmg"
+echo "  $BUILD_DIR/PromptBar-1.0.0.pkg"
+echo "  $BUILD_DIR/PromptBar-1.0.0.zip"

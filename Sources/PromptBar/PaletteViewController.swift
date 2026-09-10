@@ -222,12 +222,12 @@ final class PaletteViewController: NSViewController, NSTableViewDataSource, NSTa
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.image = NSImage(
             systemSymbolName: "text.badge.plus",
-            accessibilityDescription: "提示语快捷插入和管理【秘籍】"
+            accessibilityDescription: "PromptBar"
         )
         iconView.contentTintColor = .controlAccentColor
         iconView.imageScaling = .scaleProportionallyUpOrDown
 
-        let title = makeTextLabel("提示语快捷插入和管理【秘籍】", size: 20, weight: .bold)
+        let title = makeTextLabel("PromptBar", size: 20, weight: .bold)
         let subtitle = makeTextLabel(
             "从当前分类选择一条短语",
             size: 12,

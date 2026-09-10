@@ -81,8 +81,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let item = NSStatusBar.system.statusItem(withLength: 18)
         if let button = item.button {
             button.title = "插"
-            button.toolTip = "提示语快捷插入和管理【秘籍】（⌘⇧Space）"
-            item.autosaveName = "QuickInsertStatusBarItem"
+            button.toolTip = "PromptBar（⌘⇧Space）"
+            item.autosaveName = "PromptBarStatusBarItem"
             item.isVisible = true
         } else {
         }
@@ -120,7 +120,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
 
         let quitItem = NSMenuItem(
-            title: "退出提示语快捷插入和管理【秘籍】",
+            title: "退出 PromptBar",
             action: #selector(quit),
             keyEquivalent: "q"
         )
@@ -137,15 +137,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let applicationItem = NSMenuItem()
         mainMenu.addItem(applicationItem)
-        let applicationMenu = NSMenu(title: "提示语快捷插入和管理【秘籍】")
+        let applicationMenu = NSMenu(title: "PromptBar")
         applicationMenu.addItem(NSMenuItem(
-            title: "隐藏提示语快捷插入和管理【秘籍】",
+            title: "隐藏 PromptBar",
             action: #selector(NSApplication.hide(_:)),
             keyEquivalent: "h"
         ))
         applicationMenu.addItem(.separator())
         applicationMenu.addItem(NSMenuItem(
-            title: "退出提示语快捷插入和管理【秘籍】",
+            title: "退出 PromptBar",
             action: #selector(NSApplication.terminate(_:)),
             keyEquivalent: "q"
         ))
