@@ -229,8 +229,11 @@ final class SettingsViewController: NSViewController, NSTableViewDataSource, NST
         else { return }
 
         let item = category.items[itemTable.selectedRow]
-        NSApp.hide(nil)
-        PasteService.shared.insert(item.content, into: nil)
+        PasteService.shared.insert(item.content, into: nil) { [weak self] in
+            guard let window = self?.view.window else { return }
+            NSApp.activate(ignoringOtherApps: true)
+            window.makeKeyAndOrderFront(nil)
+        }
     }
 
     @objc private func deleteSelectedItem() {

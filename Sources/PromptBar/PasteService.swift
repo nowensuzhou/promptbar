@@ -43,7 +43,11 @@ final class PasteService {
         lastExternalApplication = frontmostApplication
     }
 
-    func insert(_ text: String, into targetApplication: NSRunningApplication?) {
+    func insert(
+        _ text: String,
+        into targetApplication: NSRunningApplication?,
+        completion: (() -> Void)? = nil
+    ) {
         guard !text.isEmpty else { return }
         let resolvedTargetApplication = resolvedTargetApplication(targetApplication)
 
@@ -65,6 +69,7 @@ final class PasteService {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
                 guard pasteboard.string(forType: .string) == text else { return }
                 snapshot.restore(to: pasteboard)
+                completion?()
             }
         }
     }

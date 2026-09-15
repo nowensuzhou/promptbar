@@ -11,6 +11,8 @@ final class SettingsWindowController: NSWindowController {
         )
         window.title = "PromptBar 设置"
         window.minSize = NSSize(width: 680, height: 440)
+        window.level = .floating
+        window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         window.contentViewController = viewController
         window.isReleasedWhenClosed = false
         window.center()
